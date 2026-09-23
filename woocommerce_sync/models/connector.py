@@ -968,7 +968,7 @@ class WoocommerceSyncConnector(models.Model):
                         if version_info[0] == 16:
                             self.env['base_multi_image.image'].create({'owner_model': 'product.template', 'owner_id': product.id, 'name': image_data['name'], 'image_1920': img_base64})
 
-                        elif version_info[0] == 18:  # TODO Odoo v19: check https://github.com/OCA/server-tools/tree/19.0/base_multi_image when available
+                        elif version_info[0] in [18, 19]:  # Odoo v19: only reached if the OCA 'base_multi_image' add-on is installed; assumes the v18 API ('storage'/'attachment_image')
                             self.env['base_multi_image.image'].create({'owner_model': 'product.template', 'owner_id': product.id, 'name': image_data['name'], 'storage': 'filestore', 'attachment_image': img_base64})
 
                 else:
